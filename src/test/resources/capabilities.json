@@ -1,0 +1,12 @@
+{
+    "perfecto": {
+      "appium:platformName": "Android",
+      "deviceName": "RFCR606KMQY"
+    },
+    "emulator": {
+      "appium:deviceName": "emulator",
+      "appium:app": "C:\\Users\\kesle\\Downloads\\Calculato.apk",
+      "appium:automationName": "UiAutomator2",
+      "appium:platformName": "Android"
+    }
+}

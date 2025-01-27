@@ -8,6 +8,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
+
+import static utils.CapabilitiesReader.readCapabilities;
 
 public class DriverManager {
 
@@ -25,18 +28,18 @@ public class DriverManager {
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             if (isLocalExecution) {
-                // Local execution capabilities
-                capabilities.setCapability("appium:deviceName", "emulator");
-                capabilities.setCapability("appium:app", "C:\\Users\\kesle\\Downloads\\Calculato.apk");
-                capabilities.setCapability("appium:automationName", "UiAutomator2");
-                capabilities.setCapability("appium:platformName", "Android");
+                Map<String, Object> emulatorCapabilities = readCapabilities().get("emulator");
+                for (Map.Entry<String, Object> entry : emulatorCapabilities.entrySet()) {
+                    capabilities.setCapability(entry.getKey(), entry.getValue());
+                }
             } else {
                 // Perfecto execution capabilities
                 perfectoCloudURL  = "https://<your-cloud-name>.perfectomobile.com/nexperience/perfectomobile/wd/hub";
-                String securityToken = "<your-security-token>";
-                capabilities.setCapability("platformName", "Android");
-                capabilities.setCapability("deviceName", "<device-name>");
-                capabilities.setCapability("app", "<app-url>");
+                String securityToken = System.getProperty("PERFECTO_SECURITY_TOKEN");
+                Map<String, Object> emulatorCapabilities = readCapabilities().get("perfecto");
+                for (Map.Entry<String, Object> entry : emulatorCapabilities.entrySet()) {
+                    capabilities.setCapability(entry.getKey(), entry.getValue());
+                }
                 capabilities.setCapability("securityToken", securityToken);
             }
 
