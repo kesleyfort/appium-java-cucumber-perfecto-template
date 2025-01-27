@@ -1,7 +1,6 @@
 package utils;
 
 import io.cucumber.plugin.EventListener;
-import io.cucumber.plugin.event.EventHandler;
 import io.cucumber.plugin.event.EventPublisher;
 import io.cucumber.plugin.event.TestStepStarted;
 import io.cucumber.plugin.event.PickleStepTestStep;
